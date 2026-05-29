@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Hunt · Nayana Vaity · 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:#0f0f14; --paper:#faf8f3; --gold:#c9a84c; --gold-l:#f5ecc8;
+  --navy:#1a3a5c; --blue:#2e6da4; --blue-l:#ddeeff;
+  --green:#1a6b3a; --green-l:#e6f4ec;
+  --amber:#a85c00; --amber-l:#fef3e2;
+  --muted:#6b6770; --border:#ddd8cc; --white:#fff;
+  --radius:12px; --card-shadow:0 2px 12px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--ink);color:rgba(255,255,255,.5);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:2px;padding:8px 40px;display:flex;justify-content:space-between;align-items:center}
+.topbar span{color:var(--gold)}
+
+/* ── HERO ── */
+header{background:var(--ink);padding:52px 40px 44px;position:relative;overflow:hidden}
+header::before,header::after{content:'';position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,.15)}
+header::before{width:420px;height:420px;top:-140px;right:-80px}
+header::after{width:220px;height:220px;bottom:-80px;right:160px}
+.hero-kicker{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:14px}
+header h1{font-family:'Playfair Display',serif;font-size:clamp(32px,5.5vw,56px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:6px}
+header h1 em{color:var(--gold);font-style:normal}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.45);font-weight:300;margin-bottom:36px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);color:rgba(255,255,255,.75);padding:5px 14px;border-radius:20px;font-size:11.5px;font-family:'DM Mono',monospace;letter-spacing:.3px}
+.pill.hot{background:rgba(201,168,76,.2);border-color:rgba(201,168,76,.5);color:var(--gold-l)}
+
+/* ── STATS ── */
+.stats{display:flex;flex-wrap:wrap;background:var(--navy)}
+.stat{flex:1;min-width:100px;padding:22px 28px;border-right:1px solid rgba(255,255,255,.08);text-align:center}
+.stat:last-child{border-right:none}
+.stat b{font-family:'Playfair Display',serif;font-size:34px;font-weight:700;color:var(--gold);display:block;line-height:1}
+.stat small{font-size:11px;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1.5px;display:block;margin-top:4px}
+
+/* ── ANALYSIS ── */
+.section{padding:44px 40px}
+.section-alt{background:var(--white)}
+.sec-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:22px;display:flex;align-items:center;gap:12px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.strength-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:22px}
+.s-card{background:var(--ink);color:#fff;padding:20px;border-radius:var(--radius);position:relative;overflow:hidden}
+.s-card::after{content:attr(data-i);position:absolute;top:-6px;right:8px;font-size:46px;opacity:.07}
+.s-card h4{font-size:10.5px;letter-spacing:2px;color:var(--gold);margin-bottom:7px;font-family:'DM Mono',monospace;text-transform:uppercase}
+.s-card p{font-size:12.5px;color:#ccc;line-height:1.55}
+
+.alert-box{border-left:4px solid var(--amber);background:var(--amber-l);border-radius:0 var(--radius) var(--radius) 0;padding:16px 20px;font-size:13px;color:#6b3a00;line-height:1.65}
+.alert-box strong{display:block;font-size:10.5px;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;color:var(--amber)}
+
+/* ── CONTROLS ── */
+.controls{padding:28px 40px 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:var(--paper)}
+.search-wrap{flex:1;min-width:220px;position:relative}
+.search-wrap input{width:100%;padding:10px 16px 10px 40px;border:1.5px solid var(--border);border-radius:24px;font-family:'DM Sans',sans-serif;font-size:13px;background:var(--white);color:var(--ink);outline:none;transition:border .2s}
+.search-wrap input:focus{border-color:var(--blue)}
+.search-wrap::before{content:'⌕';position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:16px;pointer-events:none}
+.filter-btn{padding:9px 20px;border-radius:24px;border:1.5px solid var(--border);background:var(--white);font-family:'DM Sans',sans-serif;font-size:12.5px;cursor:pointer;transition:all .2s;color:var(--ink);white-space:nowrap}
+.filter-btn:hover,.filter-btn.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.filter-btn.f-high{border-color:var(--green)}.filter-btn.f-high.active,.filter-btn.f-high:hover{background:var(--green);border-color:var(--green)}
+.filter-btn.f-med{border-color:var(--blue)}.filter-btn.f-med.active,.filter-btn.f-med:hover{background:var(--blue);border-color:var(--blue)}
+.filter-btn.f-str{border-color:var(--amber)}.filter-btn.f-str.active,.filter-btn.f-str:hover{background:var(--amber);border-color:var(--amber)}
+.count-badge{background:var(--ink);color:#fff;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:4px}
+
+/* ── JOB CARDS ── */
+.jobs-wrap{padding:28px 40px 60px}
+.tier-block{margin-bottom:52px}
+.tier-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.tier-badge{padding:6px 18px;border-radius:20px;font-size:10.5px;font-family:'DM Mono',monospace;letter-spacing:2px;text-transform:uppercase;font-weight:500}
+.tb-high{background:var(--green-l);color:var(--green)}
+.tb-med{background:var(--blue-l);color:var(--blue)}
+.tb-str{background:var(--amber-l);color:var(--amber)}
+.tier-desc{font-size:13px;color:var(--muted);flex:1}
+.tier-count{font-family:'DM Mono',monospace;font-size:11.5px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:18px}
+.card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:22px 22px 18px;transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 36px rgba(0,0,0,.1)}
+.card.high{border-left:4px solid var(--green)}
+.card.medium{border-left:4px solid var(--blue)}
+.card.stretch{border-left:4px solid var(--amber)}
+.card.hidden{display:none}
+
+.card-sector{position:absolute;top:14px;right:14px;font-size:9.5px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-family:'DM Mono',monospace}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.logo{width:44px;height:44px;border-radius:9px;background:var(--ink);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--gold);font-family:'Playfair Display',serif;font-weight:700;flex-shrink:0;letter-spacing:-1px}
+.score-wrap{text-align:right}
+.score{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;line-height:1}
+.score.s-high{color:var(--green)}.score.s-med{color:var(--blue)}.score.s-str{color:var(--amber)}
+.score-lbl{font-size:9.5px;color:var(--muted);font-family:'DM Mono',monospace;letter-spacing:1px}
+
+.job-title{font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:3px;line-height:1.3;padding-right:60px}
+.co-name{font-size:12px;color:var(--blue);font-weight:500;margin-bottom:2px}
+.location{font-size:11px;color:var(--muted);font-family:'DM Mono',monospace;margin-bottom:13px}
+
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.tag{background:var(--paper);border:1px solid var(--border);padding:3px 9px;border-radius:10px;font-size:11px;color:var(--muted)}
+.tag.match{background:var(--green-l);border-color:rgba(26,107,58,.2);color:var(--green)}
+
+.why{font-size:12px;color:var(--muted);line-height:1.6;border-top:1px solid var(--border);padding-top:11px;margin-bottom:14px}
+.why strong{color:var(--ink)}
+
+.card-btns{display:flex;gap:8px}
+.btn{flex:1;display:inline-block;padding:10px 14px;border-radius:8px;font-size:12px;font-weight:600;text-align:center;text-decoration:none;transition:all .2s;letter-spacing:.3px;cursor:pointer;border:none}
+.btn-primary{background:var(--ink);color:#fff}.btn-primary:hover{background:var(--navy)}
+.btn-gold{background:var(--gold);color:var(--ink)}.btn-gold:hover{background:#b8941e;color:var(--ink)}
+.btn-outline{background:transparent;color:var(--ink);border:1.5px solid var(--border)}.btn-outline:hover{border-color:var(--ink)}
+
+/* ── NO RESULTS ── */
+.no-results{text-align:center;padding:60px 20px;color:var(--muted);display:none}
+.no-results.show{display:block}
+.no-results h3{font-size:18px;margin-bottom:8px;color:var(--ink)}
+
+/* ── PROGRESS TRACKER ── */
+.tracker-section{background:var(--ink);padding:44px 40px}
+.tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-top:24px}
+.t-card{background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.15);border-radius:10px;padding:18px 20px;cursor:pointer;transition:all .2s}
+.t-card:hover,.t-card.applied{background:rgba(201,168,76,.1);border-color:rgba(201,168,76,.4)}
+.t-card.applied .t-status::before{content:'✓ ';color:var(--gold)}
+.t-week{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,.7);margin-bottom:6px}
+.t-co{font-size:13px;color:#eee;font-weight:500;line-height:1.3;margin-bottom:4px}
+.t-role{font-size:11.5px;color:rgba(255,255,255,.4);margin-bottom:8px}
+.t-status{font-size:11px;color:rgba(201,168,76,.6);font-family:'DM Mono',monospace}
+
+/* ── TIPS ── */
+.tips-section{background:var(--navy);padding:44px 40px}
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:24px}
+.tip{border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:22px}
+.tip h4{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:10px}
+.tip p{font-size:13px;color:rgba(255,255,255,.55);line-height:1.65}
+.tip .tip-num{font-family:'Playfair Display',serif;font-size:36px;color:rgba(201,168,76,.15);display:block;margin-bottom:-4px}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(255,255,255,.3);text-align:center;padding:20px 40px;font-size:12px;font-family:'DM Mono',monospace}
+footer span{color:var(--gold)}
+
+/* ── MOBILE ── */
+@media(max-width:620px){
+  .topbar,.controls,.jobs-wrap,.section,.tracker-section,.tips-section,header,footer{padding-left:18px;padding-right:18px}
+  header{padding-top:36px;padding-bottom:32px}
+  .grid{grid-template-columns:1fr}
+  .stat{min-width:80px;padding:16px 10px}
+  .stat b{font-size:26px}
+}
+
+/* animate in */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card{animation:fadeUp .35s ease both}
+.card:nth-child(2){animation-delay:.05s}.card:nth-child(3){animation-delay:.1s}.card:nth-child(4){animation-delay:.15s}.card:nth-child(5){animation-delay:.2s}.card:nth-child(6){animation-delay:.25s}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>NAYANA VAITY</span>
+  <span>Job Hunt Dashboard · Updated May 2026</span>
+  <span style="color:var(--gold)">22 Curated Roles</span>
+</div>
+
+<!-- HERO -->
+<header>
+  <div class="hero-kicker">&#9670; IT Project Manager · Leadership · India</div>
+  <h1>Your Job<br><em>Hunt Machine</em></h1>
+  <p class="hero-sub">PMP · CSM · AWS Certified · Microsoft GenAI · 15+ Years · BFSI Specialist</p>
+  <div class="pills">
+    <span class="pill hot">🔥 GenAI / Agentic AI</span>
+    <span class="pill hot">🏦 ICICI Bank Chief Mgr</span>
+    <span class="pill">PMP + CSM + AWS</span>
+    <span class="pill">Agile Scrum</span>
+    <span class="pill">GCP / DevOps / CI-CD</span>
+    <span class="pill">Power BI</span>
+    <span class="pill">Team 25–30 People</span>
+    <span class="pill">BFSI 15 yrs</span>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><b>22</b><small>Curated Roles</small></div>
+  <div class="stat"><b>8</b><small>High Prob.</small></div>
+  <div class="stat"><b>8</b><small>Medium</small></div>
+  <div class="stat"><b>6</b><small>Stretch</small></div>
+  <div class="stat"><b>92</b><small>Top Fit Score</small></div>
+  <div class="stat"><b>5</b><small>Sectors</small></div>
+</div>
+
+<!-- ANALYSIS -->
+<div class="section section-alt">
+  <div class="sec-title">Resume Deep-Dive Analysis</div>
+  <div class="strength-grid">
+    <div class="s-card" data-i="🏆"><h4>Brand Power</h4><p>ICICI Bank "Chief Manager (IT)" is a nationally recognized seniority signal. Every recruiter knows what it means. Lead every application with it.</p></div>
+    <div class="s-card" data-i="📜"><h4>Cert Trifecta</h4><p>PMP + CSM + AWS + Microsoft GenAI. Most PM candidates have 1–2. You have a full stack. The GenAI cert is the most in-demand in 2026 — lead with it.</p></div>
+    <div class="s-card" data-i="🤖"><h4>GenAI Edge</h4><p>Agentic AI + Applied Analytics certification. Extremely rare for a PM. Creates immediate differentiation in AI-forward companies and banking tech teams.</p></div>
+    <div class="s-card" data-i="🏦"><h4>BFSI Depth</h4><p>Credit cards (OAP/UCJ), KYC, Core Banking, Lending, OLTAS — 3 banking employers. Unmatched domain credibility for fintech and banking PM roles.</p></div>
+    <div class="s-card" data-i="⚙️"><h4>Tech Fluency</h4><p>GCP, CI/CD, GitHub, Jira, RPA (UiPath), Android, Java, Python, ReactJS. Rare for a PM — you can review code, lead architects, and own pipelines.</p></div>
+    <div class="s-card" data-i="📊"><h4>Quantified Impact</h4><p>30% efficiency boost · 20% cost cut · 50% fewer deploy errors · 25% CSAT lift. These numbers are interview gold. Memorize and tell the story behind each.</p></div>
+  </div>
+  <div class="alert-box">
+    <strong>⚠ Quick Resume Fixes Before Applying</strong>
+    (1) Fix LinkedIn URL → should be <b>linkedin.com/in/nayana-vaity</b> &nbsp;·&nbsp;
+    (2) Add INR budget ownership to each role (even estimated: "₹2–5 Cr program budget") &nbsp;·&nbsp;
+    (3) Add "SAFe / PI Planning" to skills — needed for Director-level stretch roles &nbsp;·&nbsp;
+    (4) Add explicit GenAI project deliverable (e.g. "Implemented Agentic AI workflow reducing X by Y%") &nbsp;·&nbsp;
+    (5) Keep 3 resume versions: Banking | Fintech-Startup | Consulting
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls">
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search by company, role, skill…" oninput="applyFilters()">
+  </div>
+  <button class="filter-btn active" onclick="setFilter('all',this)">All <span class="count-badge" id="cnt-all">22</span></button>
+  <button class="filter-btn f-high" onclick="setFilter('high',this)">🟢 High <span class="count-badge">8</span></button>
+  <button class="filter-btn f-med" onclick="setFilter('medium',this)">🔵 Medium <span class="count-badge">8</span></button>
+  <button class="filter-btn f-str" onclick="setFilter('stretch',this)">🟡 Stretch <span class="count-badge">6</span></button>
+</div>
+
+<!-- JOBS -->
+<div class="jobs-wrap">
+
+<!-- NO RESULTS -->
+<div class="no-results" id="noResults">
+  <h3>No roles match your search.</h3>
+  <p>Try a different keyword — company, skill, or sector.</p>
+</div>
+
+<!-- HIGH PROBABILITY -->
+<div class="tier-block" id="tier-high">
+  <div class="tier-header">
+    <span class="tier-badge tb-high">🟢 High Probability</span>
+    <span class="tier-desc">Strong match · Apply first · Best time ROI</span>
+    <span class="tier-count">8 roles</span>
+  </div>
+  <div class="grid" id="grid-high">
+
+    <div class="card high" data-keywords="deloitte consulting pm pmo bfsi banking agile scrum jira pmp certs">
+      <span class="card-sector">Consulting · MNC</span>
+      <div class="card-top">
+        <div class="logo">D</div>
+        <div class="score-wrap"><div class="score s-high">92</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Senior Consultant – IT Project & Program Manager (Banking)</div>
+      <div class="co-name">Deloitte India — TST Practice</div>
+      <div class="location">📍 Pune · Hybrid</div>
+      <div class="tags">
+        <span class="tag match">BFSI Domain</span><span class="tag match">PMP Required</span><span class="tag match">Agile / Jira</span><span class="tag">SAFe</span><span class="tag match">Scrum Ceremonies</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> 15 yr BFSI + PMP + CSM + Jira expertise = direct match. Deloitte TST's banking practice looks exactly for this profile. Role is 5–10 yr exp; you exceed. Apply with a "banking transformation PM" narrative.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://southasiacareers.deloitte.com/job/Pune-Senior-Consultant-Technical-program-manager-Pune-Technology-Strategy-&-Transformation/43890744" target="_blank">Apply Now ↗</a>
+        <a class="btn btn-outline" href="https://southasiacareers.deloitte.com" target="_blank">All Deloitte Jobs</a>
+      </div>
+    </div>
+
+    <div class="card high" data-keywords="razorpay fintech payments program manager bangalore agile cross-functional">
+      <span class="card-sector">Fintech · Unicorn</span>
+      <div class="card-top">
+        <div class="logo">R</div>
+        <div class="score-wrap"><div class="score s-high">90</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Manager, Program Management</div>
+      <div class="co-name">Razorpay</div>
+      <div class="location">📍 Bangalore · On-site</div>
+      <div class="tags">
+        <span class="tag match">Payments / Fintech</span><span class="tag match">Program Management</span><span class="tag match">Credit Card Domain</span><span class="tag">Neobank</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Your credit card sourcing + UCJ projects = Razorpay's core payments/banking DNA. They want tech-fluent PMs. Your Java/Android/API background is rare for PM candidates. Strong hire signal.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://job-boards.greenhouse.io/razorpaysoftwareprivatelimited/jobs/4609719005" target="_blank">Apply Now ↗</a>
+        <a class="btn btn-outline" href="https://razorpay.com/jobs/" target="_blank">All Razorpay Jobs</a>
+      </div>
+    </div>
+
+    <div class="card high" data-keywords="deloitte manager digital ops delivery agile waterfall vendor cloud">
+      <span class="card-sector">Consulting · MNC</span>
+      <div class="card-top">
+        <div class="logo">D</div>
+        <div class="score-wrap"><div class="score s-high">89</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Manager – IT Project & Program Manager (Digital/Ops)</div>
+      <div class="co-name">Deloitte India — Ops & Domain Solutions</div>
+      <div class="location">📍 Bengaluru · On-site</div>
+      <div class="tags">
+        <span class="tag match">PMP Certified</span><span class="tag match">Agile + Waterfall</span><span class="tag match">Cloud</span><span class="tag match">Vendor Mgmt</span><span class="tag">$2M Scale</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Requires PMP + Agile/Waterfall + vendor management + cloud. All in your profile. Budget/scope to $2M aligns with your ICICI Chief Manager experience. Strong match across all dimensions.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://southasiacareers.deloitte.com/job/Bengaluru-Manager-Digital-Bengaluru-Operations%2C-Industry-&-Domain-Solutions/50453944" target="_blank">Apply Now ↗</a>
+        <a class="btn btn-outline" href="https://southasiacareers.deloitte.com" target="_blank">More Deloitte Roles</a>
+      </div>
+    </div>
+
+    <div class="card high" data-keywords="wipro delivery manager l2 digital transformation cicd devops uат program">
+      <span class="card-sector">MNC IT Services</span>
+      <div class="card-top">
+        <div class="logo">W</div>
+        <div class="score-wrap"><div class="score s-high">88</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Delivery Manager L2</div>
+      <div class="co-name">Wipro Limited</div>
+      <div class="location">📍 Bangalore / Chennai · On-site</div>
+      <div class="tags">
+        <span class="tag match">Digital Transformation</span><span class="tag match">CI/CD</span><span class="tag match">UAT</span><span class="tag">P&amp;L Management</span><span class="tag match">Program Governance</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Wipro DM L2 needs digital transformation + CI/CD leadership. Your 50% deployment error reduction at ICICI is a direct story. Growth path to L1 within 18–24 months. Strong brand-to-brand move.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://careers.wipro.com/careers-home/jobs?keywords=delivery+manager" target="_blank">Wipro Careers ↗</a>
+        <a class="btn btn-outline" href="https://www.themuse.com/jobs/wipro/delivery-manager-dba08d" target="_blank">Job Details</a>
+      </div>
+    </div>
+
+    <div class="card high" data-keywords="deloitte tax technology product manager aws agile scrum uat apis devops">
+      <span class="card-sector">Consulting · Tax Tech</span>
+      <div class="card-top">
+        <div class="logo">D</div>
+        <div class="score-wrap"><div class="score s-high">87</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Product Manager – Program Mgmt & Delivery Excellence</div>
+      <div class="co-name">Deloitte India — Tax Technology Consulting</div>
+      <div class="location">📍 Bengaluru / Mumbai · Hybrid</div>
+      <div class="tags">
+        <span class="tag match">Scrum Master</span><span class="tag match">AWS Cloud</span><span class="tag match">Jira / Azure DevOps</span><span class="tag match">REST APIs</span><span class="tag match">UAT / QA</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Requires Agile, AWS, Jira, DevOps, REST APIs, UAT — you have every item. Tax domain also aligns with your OLTAS government tax project at Dena Bank. Almost perfect overlap.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://southasiacareers.deloitte.com/job/Bengaluru-Product-Manager-Program-Management%2C-Delivery-Excellence-Mumbai-TTC-DOMESTIC/54794144" target="_blank">Apply Now ↗</a>
+      </div>
+    </div>
+
+    <div class="card high" data-keywords="standard chartered bank senior project manager digital banking regulatory compliance">
+      <span class="card-sector">BFSI · MNC Bank</span>
+      <div class="card-top">
+        <div class="logo">SC</div>
+        <div class="score-wrap"><div class="score s-high">86</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Senior IT Project Manager – Digital Banking</div>
+      <div class="co-name">Standard Chartered Bank GBS India</div>
+      <div class="location">📍 Bengaluru / Chennai · Hybrid</div>
+      <div class="tags">
+        <span class="tag match">Banking Transformation</span><span class="tag match">Cross-Regional</span><span class="tag match">Regulatory Projects</span><span class="tag">New Product Rollouts</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> SCB GBS hires BFSI PMs with banking controls + product rollout experience. Your ICICI credit card/UCJ delivery + banking domain makes you a standout. Lateral bank-to-bank move is always well-received.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://scb.taleo.net/careersection/ex/jobsearch.ftl?lang=en&location=India" target="_blank">SCB Careers ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/standard-chartered-project-manager-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card high" data-keywords="capgemini senior project manager bfsi agile delivery vendor management">
+      <span class="card-sector">MNC IT Services</span>
+      <div class="card-top">
+        <div class="logo">C</div>
+        <div class="score-wrap"><div class="score s-high">85</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Senior Project Manager – BFSI / Delivery</div>
+      <div class="co-name">Capgemini India</div>
+      <div class="location">📍 Mumbai / Pune / Bengaluru</div>
+      <div class="tags">
+        <span class="tag match">BFSI Domain</span><span class="tag match">Agile Delivery</span><span class="tag match">Vendor Management</span><span class="tag">Capital Markets</span><span class="tag match">Mumbai Based</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Capgemini's India BFSI vertical is massive. Mumbai base + BFSI depth + CSM/PMP = competitive for their Sr PM pool, which feeds Delivery Lead roles within 12–18 months. Internal referrals help here.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://careers.capgemini.com/in/en/search-results?keywords=senior+project+manager" target="_blank">Capgemini Careers ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/capgemini-delivery-manager-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card high" data-keywords="mphasis bfsi banking program manager devops rpa uipath core banking">
+      <span class="card-sector">BFSI IT Services</span>
+      <div class="card-top">
+        <div class="logo">MP</div>
+        <div class="score-wrap"><div class="score s-high">84</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Program Manager – Digital Banking Transformation</div>
+      <div class="co-name">Mphasis (BFSI Practice)</div>
+      <div class="location">📍 Bengaluru / Pune · Hybrid</div>
+      <div class="tags">
+        <span class="tag match">Banking Domain</span><span class="tag match">DevOps / CI/CD</span><span class="tag match">RPA / UiPath</span><span class="tag">Cloud Transformation</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Mphasis specializes in banking IT. Your RPA (UiPath), CI/CD, core banking project history maps directly to their portfolio. Very high inbound success rate for banking-domain PMs with your profile.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://careers.mphasis.com/home.html" target="_blank">Mphasis Careers ↗</a>
+        <a class="btn btn-outline" href="https://www.naukri.com/mphasis-jobs-in-india" target="_blank">Naukri</a>
+      </div>
+    </div>
+
+  </div><!-- /grid-high -->
+</div><!-- /tier-high -->
+
+<!-- MEDIUM -->
+<div class="tier-block" id="tier-medium">
+  <div class="tier-header">
+    <span class="tier-badge tb-med">🔵 Medium Probability</span>
+    <span class="tier-desc">Good fit · Minor skill bridge needed · Worth applying in parallel</span>
+    <span class="tier-count">8 roles</span>
+  </div>
+  <div class="grid" id="grid-medium">
+
+    <div class="card medium" data-keywords="ibm technical program manager genai databases agile jira bangalore">
+      <span class="card-sector">MNC Tech</span>
+      <div class="card-top">
+        <div class="logo">IBM</div>
+        <div class="score-wrap"><div class="score s-med">82</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Technical Program Manager (TPM) – GenAI / Databases</div>
+      <div class="co-name">IBM India</div>
+      <div class="location">📍 Bangalore · On-site</div>
+      <div class="tags">
+        <span class="tag match">GenAI / AI Systems</span><span class="tag match">Agile / Scrum</span><span class="tag match">Jira</span><span class="tag">Database Architecture</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> IBM wants GenAI-fluent TPMs with Agile/Jira. Your Microsoft GenAI cert + Agentic AI experience is rare. Bridge: highlight Oracle SQL and data dashboards. IBM values banking-domain TPMs for their FS clients.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.ibm.com/in-en/employment/" target="_blank">IBM Careers India ↗</a>
+        <a class="btn btn-outline" href="https://www.themuse.com/jobs/ibm/technical-program-manager-tpm" target="_blank">Details</a>
+      </div>
+    </div>
+
+    <div class="card medium" data-keywords="accenture program manager financial services digital transformation cloud">
+      <span class="card-sector">Consulting · MNC</span>
+      <div class="card-top">
+        <div class="logo">A</div>
+        <div class="score-wrap"><div class="score s-med">80</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Project / Program Manager – Financial Services</div>
+      <div class="co-name">Accenture India</div>
+      <div class="location">📍 Mumbai / Bengaluru / Hyderabad</div>
+      <div class="tags">
+        <span class="tag match">Financial Services</span><span class="tag match">Digital Transformation</span><span class="tag">Cloud</span><span class="tag match">Stakeholder Mgmt</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Accenture FS practice needs PMs with banking experience. Your 15-yr BFSI arc + dual cert stack is competitive. Bridge: familiarize with Accenture Delivery Methods (ADM) pre-interview. Internal referral is powerful here.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.accenture.com/in-en/careers/jobsearch?jk=project+manager+financial+services" target="_blank">Accenture Careers ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/accenture-project-manager-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card medium" data-keywords="tcs engagement manager bfsi agile wbs budgeting stakeholder management">
+      <span class="card-sector">MNC IT Services</span>
+      <div class="card-top">
+        <div class="logo">TCS</div>
+        <div class="score-wrap"><div class="score s-med">78</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Senior Project Manager / Engagement Manager</div>
+      <div class="co-name">Tata Consultancy Services (TCS)</div>
+      <div class="location">📍 Mumbai / Pune / Bengaluru</div>
+      <div class="tags">
+        <span class="tag match">BFSI</span><span class="tag match">Agile</span><span class="tag match">WBS / Budgeting</span><span class="tag">Client Management</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> TCS is India's largest IT employer — constant hiring. Your WBS, budget management, risk tracking + BFSI domain align perfectly. TCS prefers referrals — connect with TCS employees on LinkedIn before applying directly.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.tcs.com/careers/india" target="_blank">TCS Careers ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/tcs-project-manager-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card medium" data-keywords="axis bank it project manager digital credit cards lending mobile android">
+      <span class="card-sector">BFSI · Private Bank</span>
+      <div class="card-top">
+        <div class="logo">AX</div>
+        <div class="score-wrap"><div class="score s-med">77</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">IT Project Manager – Digital Products (Cards / Lending)</div>
+      <div class="co-name">Axis Bank</div>
+      <div class="location">📍 Mumbai / Bengaluru</div>
+      <div class="tags">
+        <span class="tag match">Credit Cards</span><span class="tag match">Digital Banking</span><span class="tag match">Jira / UAT</span><span class="tag match">Android / Mobile</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Axis IT team needs PMs with credit card + mobile banking experience. Your ICICI UCJ + OAP credit card projects are a direct narrative. Lateral hire from another top-3 private bank is very well received at Axis.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.axisbank.com/about-us/careers" target="_blank">Axis Bank Careers ↗</a>
+        <a class="btn btn-outline" href="https://www.naukri.com/axis-bank-jobs" target="_blank">Naukri</a>
+      </div>
+    </div>
+
+    <div class="card medium" data-keywords="hcl technologies senior project manager delivery lead bfsi agile code governance">
+      <span class="card-sector">MNC IT Services</span>
+      <div class="card-top">
+        <div class="logo">HCL</div>
+        <div class="score-wrap"><div class="score s-med">76</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Senior IT Project Manager / Delivery Lead</div>
+      <div class="co-name">HCL Technologies</div>
+      <div class="location">📍 Noida / Bengaluru / Chennai</div>
+      <div class="tags">
+        <span class="tag match">Agile + Waterfall</span><span class="tag match">BFSI</span><span class="tag">Global Delivery</span><span class="tag match">Code Review Governance</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> HCL values technical PMs. Your code review governance experience + 15 yr tech background differentiates you from pure-PM profiles. HCL is a top employer with constant Sr PM openings — high volume, good odds.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.hcltech.com/careers" target="_blank">HCL Careers ↗</a>
+        <a class="btn btn-outline" href="https://www.naukri.com/hcl-technologies-jobs" target="_blank">Naukri</a>
+      </div>
+    </div>
+
+    <div class="card medium" data-keywords="flipkart senior program manager payments ecommerce analytics data-driven cross-functional">
+      <span class="card-sector">E-commerce · Tech</span>
+      <div class="card-top">
+        <div class="logo">F</div>
+        <div class="score-wrap"><div class="score s-med">74</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Senior Program Manager – Payments & Financial Services</div>
+      <div class="co-name">Flipkart</div>
+      <div class="location">📍 Bengaluru · On-site</div>
+      <div class="tags">
+        <span class="tag match">Payments</span><span class="tag">E-commerce</span><span class="tag match">Cross-functional</span><span class="tag match">Data Analytics</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Flipkart's payments/fintech arm needs BFSI + tech-fluent PMs. Your e-commerce + banking domain both relevant. Gap: high-volume e-commerce context. Fill with ERP/KYC modules in interview narrative. Power BI skills are a plus here.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.flipkartcareers.com" target="_blank">Flipkart Careers ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/flipkart-program-manager-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card medium" data-keywords="cognizant senior project manager digital banking agile transformation delivery">
+      <span class="card-sector">MNC IT Services</span>
+      <div class="card-top">
+        <div class="logo">COG</div>
+        <div class="score-wrap"><div class="score s-med">73</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Senior Project Manager – Digital / BFSI Delivery</div>
+      <div class="co-name">Cognizant Technology Solutions</div>
+      <div class="location">📍 Mumbai / Pune / Chennai</div>
+      <div class="tags">
+        <span class="tag match">BFSI</span><span class="tag match">Agile Scrum</span><span class="tag">SAFe</span><span class="tag match">Delivery Governance</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Cognizant's Banking & Financial Services (BFS) unit is their largest. You match the Sr PM profile strongly. Cognizant often uses Naukri for applications — set up an alert. Referral culture here helps a lot; find Cognizant contacts.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://careers.cognizant.com/global/en/search-results?keywords=senior+project+manager+bfsi" target="_blank">Cognizant Careers ↗</a>
+        <a class="btn btn-outline" href="https://www.naukri.com/cognizant-jobs" target="_blank">Naukri</a>
+      </div>
+    </div>
+
+    <div class="card medium" data-keywords="hdfc bank it delivery manager project manager digital products mobile banking">
+      <span class="card-sector">BFSI · Private Bank</span>
+      <div class="card-top">
+        <div class="logo">HD</div>
+        <div class="score-wrap"><div class="score s-med">72</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">IT Delivery Manager – Digital Banking Products</div>
+      <div class="co-name">HDFC Bank</div>
+      <div class="location">📍 Mumbai / Pune</div>
+      <div class="tags">
+        <span class="tag match">Private Banking</span><span class="tag match">Digital Products</span><span class="tag match">Team Leadership</span><span class="tag match">Vendor Relations</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> HDFC's technology division is one of India's most active hirers of senior bank-side IT PMs. Your ICICI Chief Manager = direct equivalent internal grade. Lateral move from ICICI to HDFC is a well-worn path — high conversion rate.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.hdfcbank.com/personal/about-us/careers" target="_blank">HDFC Careers ↗</a>
+        <a class="btn btn-outline" href="https://www.naukri.com/hdfc-bank-jobs" target="_blank">Naukri</a>
+      </div>
+    </div>
+
+  </div><!-- /grid-medium -->
+</div><!-- /tier-medium -->
+
+<!-- STRETCH -->
+<div class="tier-block" id="tier-stretch">
+  <div class="tier-header">
+    <span class="tier-badge tb-str">🟡 Stretch Roles</span>
+    <span class="tier-desc">Director / VP / Big Tech level · High upside · Tailored application required</span>
+    <span class="tier-count">6 roles</span>
+  </div>
+  <div class="grid" id="grid-stretch">
+
+    <div class="card stretch" data-keywords="phonepe director program management payments upi bangalore cross-functional">
+      <span class="card-sector">Fintech · Top Unicorn</span>
+      <div class="card-top">
+        <div class="logo">PP</div>
+        <div class="score-wrap"><div class="score s-str">70</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Director of Program Management / Delivery</div>
+      <div class="co-name">PhonePe</div>
+      <div class="location">📍 Bengaluru · On-site</div>
+      <div class="tags">
+        <span class="tag match">Payments / UPI</span><span class="tag">Director Level</span><span class="tag match">Cross-functional</span><span class="tag">OKR Frameworks</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> PhonePe is building PM leadership. BFSI + payments domain + GenAI cert are relevant. Stretch: demonstrate large-scale OKR governance + P&amp;L ownership at Director level. Pitch angle: ICICI Chief Manager + GenAI + payments domain = rare combo.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://careers.phonepe.com" target="_blank">PhonePe Careers ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/phonepe-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card stretch" data-keywords="ey senior manager technology consulting pmo advisory agile transformation">
+      <span class="card-sector">Consulting · Big 4</span>
+      <div class="card-top">
+        <div class="logo">EY</div>
+        <div class="score-wrap"><div class="score s-str">69</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Manager / Senior Manager – Technology Consulting (PMO)</div>
+      <div class="co-name">EY India (GDS / Advisory)</div>
+      <div class="location">📍 Bengaluru / Mumbai / Hyderabad · Hybrid</div>
+      <div class="tags">
+        <span class="tag match">PMO Leadership</span><span class="tag">Client Advisory</span><span class="tag match">Agile Transformation</span><span class="tag">Pre-sales</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> EY GDS hires PMP-certified tech managers for client-facing advisory. Stretch: client consulting sales exposure needed. Pitch: "ICICI Chief Manager → consulting" is a credible narrative. EY values BFSI domain experts at Manager level.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://careers.ey.com/ey/search/?q=project+manager&locationsearch=india" target="_blank">EY Careers India ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/ey-india-project-manager-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card stretch" data-keywords="paytm head program management vp payments wallet genai android mobile">
+      <span class="card-sector">Fintech · Scale-up</span>
+      <div class="card-top">
+        <div class="logo">PT</div>
+        <div class="score-wrap"><div class="score s-str">68</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Head of Program Management / VP Engineering PM</div>
+      <div class="co-name">Paytm (One97 Communications)</div>
+      <div class="location">📍 Noida / Mumbai</div>
+      <div class="tags">
+        <span class="tag match">Payments / Wallet</span><span class="tag">VP Level</span><span class="tag match">Android / Mobile</span><span class="tag match">GenAI Products</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Paytm needs banking-tech PMs post-RBI restructuring. ICICI pedigree + Android/payments domain + GenAI cert = compelling combination. Stretch: Paytm's startup culture is fast-paced. Frame your ICICI velocity and CI/CD speed as cultural alignment.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://paytm.com/about-us/careers/" target="_blank">Paytm Careers ↗</a>
+        <a class="btn btn-outline" href="https://www.naukri.com/paytm-jobs" target="_blank">Naukri</a>
+      </div>
+    </div>
+
+    <div class="card stretch" data-keywords="pwc senior manager digital project delivery financial services pmo governance change management">
+      <span class="card-sector">Consulting · Big 4</span>
+      <div class="card-top">
+        <div class="logo">PwC</div>
+        <div class="score-wrap"><div class="score s-str">67</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Senior Manager – Digital Project Delivery (FS)</div>
+      <div class="co-name">PwC India (Advisory)</div>
+      <div class="location">📍 Mumbai / Bengaluru / Gurgaon</div>
+      <div class="tags">
+        <span class="tag match">Financial Services</span><span class="tag match">PMO / Governance</span><span class="tag">Executive Stakeholders</span><span class="tag">Change Management</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> PwC Advisory needs FS domain + PMO governance leaders. Stretch: change management + client advisory depth needed. Frame your ICICI board-level reporting and stakeholder governance as equivalent. PMP is a key differentiator at PwC.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.pwc.in/careers.html" target="_blank">PwC India Careers ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/pwc-india-project-manager-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+    <div class="card stretch" data-keywords="google technical program manager payments india bfsi gpay cross-functional">
+      <span class="card-sector">Big Tech · MNC</span>
+      <div class="card-top">
+        <div class="logo">G</div>
+        <div class="score-wrap"><div class="score s-str">65</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Technical Program Manager – Google Pay / BFSI India</div>
+      <div class="co-name">Google India</div>
+      <div class="location">📍 Bengaluru · On-site</div>
+      <div class="tags">
+        <span class="tag match">Payments / UPI</span><span class="tag">Big Tech Culture</span><span class="tag match">Cross-functional</span><span class="tag match">Data-driven</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> Google Pay's India team hires BFSI + payments PMs. Stretch: Big Tech expects product sense + data fluency at higher depth. Your Power BI + GenAI cert bridges this. Supplement with PM school / CIRCLES framework prep before interviews.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://careers.google.com/jobs/results/?location=India&q=program+manager+payments" target="_blank">Google Careers ↗</a>
+      </div>
+    </div>
+
+    <div class="card stretch" data-keywords="mckinsey engagement manager digital banking strategy transformation bfsi">
+      <span class="card-sector">Strategy · MNC</span>
+      <div class="card-top">
+        <div class="logo">MC</div>
+        <div class="score-wrap"><div class="score s-str">63</div><div class="score-lbl">FIT SCORE</div></div>
+      </div>
+      <div class="job-title">Engagement Manager – Digital Banking Transformation</div>
+      <div class="co-name">McKinsey & Company India</div>
+      <div class="location">📍 Mumbai / Gurgaon</div>
+      <div class="tags">
+        <span class="tag match">Strategy + Delivery</span><span class="tag match">BFSI Transformation</span><span class="tag">Executive Influence</span><span class="tag">MBA Preferred</span>
+      </div>
+      <div class="why"><strong>Why you match:</strong> McKinsey's FinTech/Digital Banking practice hires Sr PM profiles for Engagement Manager roles via the "Experienced Hire" pathway. Stretch: MBA or tier-1 degree preferred + consulting experience. ICICI Chief Manager brand is respected — apply through the experienced hire portal.</div>
+      <div class="card-btns">
+        <a class="btn btn-gold" href="https://www.mckinsey.com/in/careers" target="_blank">McKinsey India ↗</a>
+        <a class="btn btn-outline" href="https://in.linkedin.com/jobs/mckinsey-india-jobs" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+
+  </div><!-- /grid-stretch -->
+</div><!-- /tier-stretch -->
+
+</div><!-- /jobs-wrap -->
+
+<!-- WEEKLY ACTION TRACKER -->
+<div class="tracker-section">
+  <div class="sec-title" style="color:#fff;font-family:'Playfair Display',serif;font-size:20px">
+    📅 Weekly Action Plan — Click to Mark Applied
+  </div>
+  <div class="tracker-grid" id="tracker">
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 1 · Day 1–2</div>
+      <div class="t-co">Deloitte India (TST)</div>
+      <div class="t-role">Sr Consultant – Banking PM</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 1 · Day 2–3</div>
+      <div class="t-co">Razorpay</div>
+      <div class="t-role">Manager, Program Management</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 1 · Day 3–4</div>
+      <div class="t-co">Wipro</div>
+      <div class="t-role">Delivery Manager L2</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 1 · Day 4–5</div>
+      <div class="t-co">Deloitte India (Ops)</div>
+      <div class="t-role">Manager – Digital PM</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 2 · Day 1–2</div>
+      <div class="t-co">Standard Chartered GBS</div>
+      <div class="t-role">Senior IT Project Manager</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 2 · Day 2–3</div>
+      <div class="t-co">Capgemini India</div>
+      <div class="t-role">Senior PM – BFSI Delivery</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 2 · Day 3–5</div>
+      <div class="t-co">Mphasis BFSI</div>
+      <div class="t-role">Program Manager – Banking</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 3 · Day 1–2</div>
+      <div class="t-co">Axis Bank</div>
+      <div class="t-role">IT Project Manager – Cards</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 3 · Day 2–3</div>
+      <div class="t-co">TCS</div>
+      <div class="t-role">Sr PM / Engagement Manager</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 3 · Day 3–5</div>
+      <div class="t-co">IBM India</div>
+      <div class="t-role">TPM – GenAI / Databases</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 4 · Day 1–2</div>
+      <div class="t-co">HCL Technologies</div>
+      <div class="t-role">Senior IT PM / Delivery Lead</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+    <div class="t-card" onclick="toggleApplied(this)">
+      <div class="t-week">Week 4 · Day 2–5</div>
+      <div class="t-co">PhonePe + EY + PwC</div>
+      <div class="t-role">Stretch Applications</div>
+      <div class="t-status">⬜ Not Applied</div>
+    </div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="tips-section">
+  <div class="sec-title" style="color:#fff;font-family:'Playfair Display',serif;font-size:20px">
+    🎯 Application Strategy for Nayana
+  </div>
+  <div class="tips-grid">
+    <div class="tip">
+      <span class="tip-num">01</span>
+      <h4>Lead with GenAI</h4>
+      <p>In 2026, your Microsoft Agentic AI certification is rarer than PMP. Open every cover letter with your AI-fluent PM angle. "GenAI-experienced IT Leader with 15 yrs BFSI delivery" gets callbacks faster.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-num">02</span>
+      <h4>Fix LinkedIn URL</h4>
+      <p>Your resume URL appears broken. It must be <strong style="color:#eee">linkedin.com/in/nayana-vaity</strong> (with /in/). Recruiters check — a broken link is a red flag that loses interviews before they start.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-num">03</span>
+      <h4>3 Resume Versions</h4>
+      <p>Keep tailored versions: (1) BFSI Banking PM for banks/SCB, (2) Program Manager – Fintech for startups/Razorpay, (3) Digital Transformation Lead for Deloitte/Accenture. Never send the same version twice.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-num">04</span>
+      <h4>Add Budget Numbers</h4>
+      <p>Director roles require P&amp;L ownership. Add "Managed ₹X Cr program budget" to each experience. Estimate from project scope. Even ₹2–5 Cr figures significantly increase Director-level callbacks.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-num">05</span>
+      <h4>Set Targeted Alerts</h4>
+      <p>Naukri: "Senior PM + BFSI + PMP + 12 yrs". LinkedIn: "Delivery Manager + Banking + India". Indeed: "Program Manager + ICICI OR HDFC OR fintech". Daily alerts = first-mover advantage on new postings.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-num">06</span>
+      <h4>Leverage ICICI Brand</h4>
+      <p>ICICI Bank "Chief Manager (IT)" is a strong signal. Mention it in the first line of every application. For consulting firms, it signals credibility. For fintechs, it signals domain depth. It opens doors.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  Built for <span>Nayana Vaity</span> · IT Project Manager · India 2026 · 22 curated roles across BFSI, Consulting, Fintech & Big Tech
+</footer>
+
+<script>
+  let currentFilter = 'all';
+
+  function setFilter(tier, btn) {
+    currentFilter = tier;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    let visible = 0;
+
+    document.querySelectorAll('.card').forEach(card => {
+      const tier = card.classList.contains('high') ? 'high'
+                 : card.classList.contains('medium') ? 'medium' : 'stretch';
+      const keywords = (card.dataset.keywords || '') + ' ' + card.innerText.toLowerCase();
+      const tierMatch = currentFilter === 'all' || currentFilter === tier;
+      const queryMatch = !q || keywords.includes(q);
+      if (tierMatch && queryMatch) {
+        card.classList.remove('hidden'); visible++;
+      } else {
+        card.classList.add('hidden');
+      }
+    });
+
+    // Show/hide tier blocks based on visible cards
+    ['high','medium','stretch'].forEach(tier => {
+      const block = document.getElementById('tier-' + tier);
+      if (!block) return;
+      const hasVisible = block.querySelectorAll('.card:not(.hidden)').length > 0;
+      block.style.display = (currentFilter !== 'all' && currentFilter !== tier) ? 'none'
+                           : hasVisible ? 'block' : 'none';
+    });
+
+    document.getElementById('noResults').classList.toggle('show', visible === 0);
+  }
+
+  function toggleApplied(el) {
+    const applied = el.classList.toggle('applied');
+    const status = el.querySelector('.t-status');
+    status.textContent = applied ? '✓ Applied' : '⬜ Not Applied';
+  }
+</script>
+</body>
+</html>
